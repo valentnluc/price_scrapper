@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import altair as alt
+from utils import clean_price
 
 # --- CONFIGURACIÓN DE TEMA (DARK MODE RESTORED) ---
 THEME = {
@@ -23,21 +24,7 @@ print("1. Cargando y limpiando datos...")
 df_hist = pd.read_csv('precios_historicos.csv')
 df_maestros = pd.read_csv('Productos_Maestros.csv')
 
-def clean_price(price_str):
-    if pd.isna(price_str): return None
-    s = str(price_str).replace('$', '').replace(' ', '').strip()
-    if not s: return None
-    if ',' in s and '.' in s:
-        if s.rfind(',') > s.rfind('.'): s = s.replace('.', '').replace(',', '.')
-        else: s = s.replace(',', '') 
-    elif ',' in s: s = s.replace(',', '.')
-    elif '.' in s: s = s.replace('.', '')
-    try:
-        val = float(s)
-        if val > 500000: val = val / 1000 
-        return val if val > 50 else None
-    except:
-        return None
+# clean_price importada desde utils.py
 
 df_hist['precio_num'] = df_hist['precio_detectado'].apply(clean_price)
 df_hist = df_hist.dropna(subset=['precio_num'])

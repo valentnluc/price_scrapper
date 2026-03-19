@@ -4,3 +4,4 @@ altair
 requests
 beautifulsoup4
 vl-convert-python
+tenacity
