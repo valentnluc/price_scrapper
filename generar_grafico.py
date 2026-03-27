@@ -37,20 +37,29 @@ df_full['Category'] = df_full['nombre_generico'].fillna(df_full['nombre_detectad
 
 # --- CÁLCULO DE VARIACIÓN 30 DÍAS ---
 def get_variation(group):
-    if len(group) < 2: return 0.0
+    """Calcula la variación porcentual de precio en los últimos 30 días."""
+    if len(group) < 2:
+        return 0.0
     group = group.sort_values('timestamp')
     latest = group.iloc[-1]
     now = latest['timestamp']
     price_now = latest['precio_num']
     target_date = now - pd.Timedelta(days=30)
+    group = group.copy()
     group['diff_days'] = (group['timestamp'] - target_date).abs()
     closest = group.loc[group['diff_days'].idxmin()]
     price_old = closest['precio_num']
-    if abs(closest['timestamp'] - now) < pd.Timedelta(hours=24): return 0.0
-    if price_old == 0: return 0.0
+    if abs(closest['timestamp'] - now) < pd.Timedelta(hours=24):
+        return 0.0
+    if price_old == 0:
+        return 0.0
     return (price_now - price_old) / price_old
 
-variations = df_full.groupby('Category').apply(get_variation).reset_index(name='pct_change')
+variations = (
+    df_full.groupby('Category')[['precio_num', 'timestamp']]
+    .apply(get_variation, include_groups=False)
+    .reset_index(name='pct_change')
+)
 stats = df_full.groupby('Category')['precio_num'].agg(['min', 'max', 'mean']).reset_index().round(0)
 stats = stats.merge(variations, on='Category')
 stats['zero'] = 0.0 # CRITICAL FIX: Base para las flechas
@@ -227,7 +236,7 @@ html_content = f"""
             display: flex;
             justify-content: center;
         }}
-        .dashboard-container {{ width: 100%; max_width: 1200px; }}
+        .dashboard-container {{ width: 100%; max-width: 1200px; }}
         .card {{
             background-color: var(--bg-surface);
             border: 1px solid var(--border);

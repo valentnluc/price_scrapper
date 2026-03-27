@@ -46,6 +46,7 @@ logger.addHandler(console_handler)
 # ---------------------------------------------------------
 HISTORY_FILE = 'precios_historicos.csv'
 INPUT_FILE = 'Scrappers.csv'
+ERRORS_FILE = 'errores.csv'
 
 USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
@@ -76,155 +77,186 @@ def fetch_url(url: str) -> requests.Response:
     response = requests.get(url, headers=headers, timeout=10)
     return response
 
-# ---------------------------------------------------------
-# 5. CARGA DEL HISTORIAL (MEMORIA)
-# ---------------------------------------------------------
-# Diccionario: { (proveedor, codigo, url) : precio_str }
-last_prices = {}
-
-if os.path.exists(HISTORY_FILE):
-    try:
-        df_history = pd.read_csv(HISTORY_FILE, on_bad_lines='skip')
-        # Recorremos al revés para quedarnos con el dato más reciente por producto
-        for _, row in df_history.iloc[::-1].iterrows():
-            key = (str(row['proveedor']), str(row['codigo']), str(row['url']))
-            if key not in last_prices:
-                clean_p = str(row['precio_detectado']).replace('\xa0', ' ').strip()
-                last_prices[key] = clean_p
-        logger.info(f"Historial cargado: {len(last_prices)} precios conocidos.")
-    except Exception as e:
-        logger.warning(f"No se pudo leer el historial ({e}). Se empieza de cero.")
 
 # ---------------------------------------------------------
-# 6. BUCLE PRINCIPAL (EL SCRAPING)
+# 5. FUNCIÓN PRINCIPAL
 # ---------------------------------------------------------
-csv_file = pd.read_csv(INPUT_FILE)
-new_data = []
+def main():
+    run_timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-# Contadores para el resumen final
-cnt_igual = 0
-cnt_skip = 0
-cnt_error = 0
-
-logger.info(f"{'='*60}")
-logger.info(f"Iniciando escaneo de {len(csv_file)} productos...")
-logger.info(f"{'='*60}")
-
-for index, row in csv_file.iterrows():
-    url = row['url']
-    proveedor = row['proveedor']
-    codigo = str(row['cod'])
-    codigo_interno = row['codigo_interno']
-
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-    final_name = "Nombre no encontrado"
-    final_price = "Precio no encontrado"
-
-    try:
-        # A. PETICIÓN HTTP (con reintentos automáticos)
-        response = fetch_url(url)
-
-        if response.status_code != 200:
-            logger.error(f"[HTTP {response.status_code}] {proveedor}-{codigo} | {url}")
-            cnt_error += 1
-            continue
-
-        # B. PARSEO HTML
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # C. EXTRACCIÓN DE DATOS
-        name_element = soup.select_one(row['nombre'])
-        if name_element:
-            final_name = name_element.get_text(strip=True)
-
-        price_element = soup.select_one(row['monto'])
-        if price_element:
-            raw_price = price_element.get_text(separator=',', strip=True).replace('\xa0', ' ')
-            final_price = raw_price.replace('$,', '$').replace(' ,', ' ')
-
-        # D. VALIDACIONES
-        is_valid_name  = final_name  != "Nombre no encontrado"
-        is_valid_price = final_price != "Precio no encontrado"
-        parsed_price   = clean_price(final_price)           # float o None
-        is_non_zero    = parsed_price is not None and parsed_price > 0
-
-        if is_valid_name and is_valid_price and is_non_zero:
-            key = (str(proveedor), str(codigo), str(url))
-            last_known_price = last_prices.get(key)
-
-            # Comparamos el precio limpio (float) actual vs el último conocido (float)
-            last_parsed = clean_price(last_known_price) if last_known_price else None
-
-            price_changed = (last_parsed is None) or (abs(parsed_price - last_parsed) > 0.01)
-
-            if price_changed:
-                status = "NUEVO" if last_known_price is None else "CAMBIO"
-                logger.info(f"[{status}] {proveedor}-{codigo}: {last_known_price} -> {final_price}")
-
-                new_data.append({
-                    'proveedor':        proveedor,
-                    'codigo':           codigo,
-                    'codigo_interno':   codigo_interno,
-                    'nombre_detectado': final_name,
-                    'precio_detectado': final_price,
-                    'timestamp':        timestamp,
-                    'url':              url,
-                    'status':           status,
-                })
-                last_prices[key] = final_price
-            else:
-                logger.info(f"[IGUAL]  {proveedor}-{codigo}: Mantiene {final_price}")
-                cnt_igual += 1
-        else:
-            logger.warning(
-                f"[SKIP] {proveedor}-{codigo} | "
-                f"Datos incompletos -> nombre='{final_name}' | precio='{final_price}' | parsed={parsed_price}"
-            )
-            cnt_skip += 1
-
-    except Exception as e:
-        logger.error(f"[FALLO] {proveedor}-{codigo} | {url}", exc_info=True)
-        cnt_error += 1
-
-    # Delay aleatorio para no saturar los servidores
-    time.sleep(random.uniform(1.5, 4.0))
-
-# ---------------------------------------------------------
-# 7. GUARDADO DE DATOS CON DEDUPLICACIÓN
-# ---------------------------------------------------------
-cnt_nuevos  = sum(1 for d in new_data if d.get('status') == 'NUEVO')
-cnt_cambios = sum(1 for d in new_data if d.get('status') == 'CAMBIO')
-
-if new_data:
-    df_new = pd.DataFrame(new_data).drop(columns=['status'])  # 'status' es solo interno
+    # --- CARGA DEL HISTORIAL (MEMORIA) ---
+    # Diccionario: { (proveedor, codigo, url) : precio_str }
+    last_prices = {}
 
     if os.path.exists(HISTORY_FILE):
-        df_existing = pd.read_csv(HISTORY_FILE, on_bad_lines='skip')
-        df_combined = pd.concat([df_existing, df_new], ignore_index=True)
-        # Eliminar duplicados exactos (misma clave + mismo timestamp)
-        df_combined = df_combined.drop_duplicates(
-            subset=['proveedor', 'codigo', 'timestamp'],
-            keep='last'
-        )
-        df_combined.to_csv(HISTORY_FILE, index=False)
+        try:
+            df_history = pd.read_csv(HISTORY_FILE, on_bad_lines='skip')
+            # Quedarnos con el dato más reciente por producto usando pandas (más eficiente que iterrows)
+            df_latest = df_history.drop_duplicates(
+                subset=['proveedor', 'codigo', 'url'], keep='last'
+            )
+            for _, row in df_latest.iterrows():
+                key = (str(row['proveedor']), str(row['codigo']), str(row['url']))
+                clean_p = str(row['precio_detectado']).replace('\xa0', ' ').strip()
+                last_prices[key] = clean_p
+            logger.info(f"Historial cargado: {len(last_prices)} precios conocidos.")
+        except Exception as e:
+            logger.warning(f"No se pudo leer el historial ({e}). Se empieza de cero.")
+
+    # --- BUCLE PRINCIPAL (EL SCRAPING) ---
+    csv_file = pd.read_csv(INPUT_FILE)
+    new_data = []
+    error_data = []  # Registros de productos con error o datos incompletos
+
+    # Contadores para el resumen final
+    cnt_igual = 0
+    cnt_skip = 0
+    cnt_error = 0
+
+    logger.info(f"{'='*60}")
+    logger.info(f"Iniciando escaneo de {len(csv_file)} productos...")
+    logger.info(f"{'='*60}")
+
+    for index, row in csv_file.iterrows():
+        url = row['url']
+        proveedor = row['proveedor']
+        codigo = str(row['cod'])
+        codigo_interno = row['codigo_interno']
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        final_name = "Nombre no encontrado"
+        final_price = "Precio no encontrado"
+        error_type = None
+
+        try:
+            # A. PETICIÓN HTTP (con reintentos automáticos)
+            response = fetch_url(url)
+
+            if response.status_code != 200:
+                logger.error(f"[HTTP {response.status_code}] {proveedor}-{codigo} | {url}")
+                cnt_error += 1
+                error_type = f"HTTP {response.status_code}"
+            else:
+                # B. PARSEO HTML
+                soup = BeautifulSoup(response.content, 'html.parser')
+
+                # C. EXTRACCIÓN DE DATOS
+                name_element = soup.select_one(row['nombre'])
+                if name_element:
+                    final_name = name_element.get_text(strip=True)
+
+                price_element = soup.select_one(row['monto'])
+                if price_element:
+                    raw_price = price_element.get_text(separator=',', strip=True).replace('\xa0', ' ')
+                    final_price = raw_price.replace('$,', '$').replace(' ,', ' ')
+
+                # D. VALIDACIONES
+                is_valid_name  = final_name  != "Nombre no encontrado"
+                is_valid_price = final_price != "Precio no encontrado"
+                parsed_price   = clean_price(final_price)
+                is_non_zero    = parsed_price is not None and parsed_price > 0
+
+                if is_valid_name and is_valid_price and is_non_zero:
+                    key = (str(proveedor), str(codigo), str(url))
+                    last_known_price = last_prices.get(key)
+
+                    last_parsed = clean_price(last_known_price) if last_known_price else None
+                    price_changed = (last_parsed is None) or (abs(parsed_price - last_parsed) > 0.01)
+
+                    if price_changed:
+                        status = "NUEVO" if last_known_price is None else "CAMBIO"
+                        logger.info(f"[{status}] {proveedor}-{codigo}: {last_known_price} -> {final_price}")
+
+                        new_data.append({
+                            'proveedor':        proveedor,
+                            'codigo':           codigo,
+                            'codigo_interno':   codigo_interno,
+                            'nombre_detectado': final_name,
+                            'precio_detectado': final_price,
+                            'timestamp':        timestamp,
+                            'url':              url,
+                            'status':           status,
+                        })
+                        last_prices[key] = final_price
+                    else:
+                        logger.info(f"[IGUAL]  {proveedor}-{codigo}: Mantiene {final_price}")
+                        cnt_igual += 1
+                else:
+                    logger.warning(
+                        f"[SKIP] {proveedor}-{codigo} | "
+                        f"Datos incompletos -> nombre='{final_name}' | precio='{final_price}' | parsed={parsed_price}"
+                    )
+                    cnt_skip += 1
+                    error_type = "SKIP"
+
+        except Exception as e:
+            logger.error(f"[FALLO] {proveedor}-{codigo} | {url}", exc_info=True)
+            cnt_error += 1
+            error_type = f"EXCEPCION: {type(e).__name__}"
+
+        # Registrar errores y skips para el CSV de errores
+        if error_type:
+            error_data.append({
+                'run_timestamp': run_timestamp,
+                'proveedor':     proveedor,
+                'codigo':        codigo,
+                'url':           url,
+                'tipo_error':    error_type,
+                'nombre':        final_name,
+                'precio':        final_price,
+            })
+
+        # Delay aleatorio para no saturar los servidores
+        time.sleep(random.uniform(1.5, 4.0))
+
+    # --- GUARDADO DE DATOS CON DEDUPLICACIÓN ---
+    cnt_nuevos  = sum(1 for d in new_data if d.get('status') == 'NUEVO')
+    cnt_cambios = sum(1 for d in new_data if d.get('status') == 'CAMBIO')
+
+    if new_data:
+        df_new = pd.DataFrame(new_data).drop(columns=['status'])  # 'status' es solo interno
+
+        if os.path.exists(HISTORY_FILE):
+            df_existing = pd.read_csv(HISTORY_FILE, on_bad_lines='skip')
+            df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+            df_combined = df_combined.drop_duplicates(
+                subset=['proveedor', 'codigo', 'timestamp'],
+                keep='last'
+            )
+            df_combined.to_csv(HISTORY_FILE, index=False)
+        else:
+            df_new.to_csv(HISTORY_FILE, index=False)
+
+        logger.info(f"Se agregaron {len(new_data)} registros a '{HISTORY_FILE}'.")
     else:
-        df_new.to_csv(HISTORY_FILE, index=False)
+        logger.info("No hubo variaciones de precio. El archivo no se ha tocado.")
 
-    logger.info(f"Se agregaron {len(new_data)} registros a '{HISTORY_FILE}'.")
-else:
-    logger.info("No hubo variaciones de precio. El archivo no se ha tocado.")
+    # --- EXPORTAR ERRORES Y SKIPS ---
+    if error_data:
+        df_errors = pd.DataFrame(error_data)
+        df_errors.to_csv(ERRORS_FILE, index=False)
+        logger.info(f"Se exportaron {len(error_data)} entradas a '{ERRORS_FILE}'.")
+    elif os.path.exists(ERRORS_FILE):
+        # Si no hubo errores esta corrida, limpiar el archivo anterior
+        os.remove(ERRORS_FILE)
+        logger.info("Sin errores esta corrida. Se eliminó el archivo de errores anterior.")
+
+    # --- RESUMEN FINAL DE LA CORRIDA ---
+    total = len(csv_file)
+    logger.info(f"{'='*60}")
+    logger.info(f"RESUMEN DE EJECUCIÓN")
+    logger.info(f"  Total procesados : {total}")
+    logger.info(f"  ✅ Nuevos        : {cnt_nuevos}")
+    logger.info(f"  🔄 Cambios       : {cnt_cambios}")
+    logger.info(f"  ➖ Sin cambios   : {cnt_igual}")
+    logger.info(f"  ⚠️  Incompletos  : {cnt_skip}")
+    logger.info(f"  ❌ Errores       : {cnt_error}")
+    logger.info(f"{'='*60}")
+
 
 # ---------------------------------------------------------
-# 8. RESUMEN FINAL DE LA CORRIDA
+# 6. PUNTO DE ENTRADA
 # ---------------------------------------------------------
-total = len(csv_file)
-logger.info(f"{'='*60}")
-logger.info(f"RESUMEN DE EJECUCIÓN")
-logger.info(f"  Total procesados : {total}")
-logger.info(f"  ✅ Nuevos        : {cnt_nuevos}")
-logger.info(f"  🔄 Cambios       : {cnt_cambios}")
-logger.info(f"  ➖ Sin cambios   : {cnt_igual}")
-logger.info(f"  ⚠️  Incompletos  : {cnt_skip}")
-logger.info(f"  ❌ Errores       : {cnt_error}")
-logger.info(f"{'='*60}")
+if __name__ == "__main__":
+    main()
