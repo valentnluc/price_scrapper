@@ -1,18 +1,29 @@
 # ---------------------------------------------------------
 # UTILS.PY - Funciones compartidas entre scripts
 # ---------------------------------------------------------
+import re
 
 def clean_price(price_str):
     """
-    Convierte un string de precio (eg: "$ 1,234.56" o "$1.234,56") a un float.
-    Maneja los distintos formatos que usan los proveedores argentinos.
+    Convierte un string de precio a float.
+    Maneja formatos argentinos ("$1.234,56"), anglosajones ("$ 1,234.56"),
+    y precios con unidad al final ("$ 865 x unidad.", "$ 1.200 c/u").
 
     Retorna float o None si no se puede parsear o el valor es <= 0.
     """
     import pandas as pd
     if pd.isna(price_str):
         return None
-    s = str(price_str).replace('$', '').replace(' ', '').strip()
+    s = str(price_str).replace('$', '').strip()
+    if not s:
+        return None
+
+    # Eliminar texto de unidad al final (ej: "x unidad.", "c/u", "x m2.", "por unidad")
+    # Preserva todo lo anterior al primer espacio + carácter alfabético
+    s = re.split(r'\s+[a-zA-ZáéíóúüñÀ-ÿ]', s)[0].strip()
+
+    # Eliminar espacios internos restantes
+    s = s.replace(' ', '')
     if not s:
         return None
 
