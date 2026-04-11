@@ -1,13 +1,43 @@
 run_timestamp,proveedor,codigo,url,tipo_error,nombre,precio
-2026-04-10 13:20:40,RODO MATERIALES,39,https://www.rodomateriales.com.ar/producto/cbwle/block-de-cemento-13x20x40,SKIP,Importante,Precio no encontrado
-2026-04-10 13:20:40,LA YESERA ROSARINA,37,https://tienda.layeserarosarina.com.ar/productos/placas-durlock-125mm-12x240-m/,SKIP,Nombre no encontrado,$14.560
-2026-04-10 13:20:40,DURLINE,38,https://www.durline.com.ar/#!/producto/83/,SKIP,Placa Durlock Est Ref 12.5mm 1.20x2m *Durlock,"$13.450,,00"
-2026-04-10 13:20:40,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/cementos/copia-de-cemento-avellaneda-x-50-kg/,EXCEPCION: TimeoutError,,
-2026-04-10 13:20:40,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/arena-comun-x-metro/,SKIP,Nombre no encontrado,"$0,00"
-2026-04-10 13:20:40,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-extra-avellaneda-x-25-kg/,HTTP 404,,
-2026-04-10 13:20:40,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-santa-elena-x-20-kg/,EXCEPCION: TimeoutError,,
-2026-04-10 13:20:40,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-grande/,SKIP,Nombre no encontrado,"$0,00"
-2026-04-10 13:20:40,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-chico/,SKIP,Nombre no encontrado,"$0,00"
-2026-04-10 13:20:40,EL LADRILLERO,20,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0001.107,SKIP,CEMENTO AVELLANEDA X 50 KG,$ 0.00
-2026-04-10 13:20:40,CAS,11,https://castienda.com.ar/producto/tector-aditivo-hidrofugo-1230-x-20-lts-holcim/,HTTP 404,,
-2026-04-10 13:20:40,CAS,18,https://castienda.com.ar/producto/ceramico-glaciar-36-x-36-alberdi-2da/,HTTP 404,,
+2026-04-11 13:07:59,RODO MATERIALES,39,https://www.rodomateriales.com.ar/producto/cbwle/block-de-cemento-13x20x40,SKIP,Importante,Precio no encontrado
+2026-04-11 13:07:59,LA YESERA ROSARINA,37,https://tienda.layeserarosarina.com.ar/productos/placas-durlock-125mm-12x240-m/,SKIP,Nombre no encontrado,$14.900
+2026-04-11 13:07:59,DURLINE,38,https://www.durline.com.ar/#!/producto/83/,SKIP,Placa Durlock Est Ref 12.5mm 1.20x2m *Durlock,"$13.450,,00"
+2026-04-11 13:07:59,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/cementos/copia-de-cemento-avellaneda-x-50-kg/,SKIP,Nombre no encontrado,"$0,00"
+2026-04-11 13:07:59,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/arena-comun-x-metro/,EXCEPCION: TimeoutError,,
+2026-04-11 13:07:59,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-extra-avellaneda-x-25-kg/,HTTP 404,,
+2026-04-11 13:07:59,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-santa-elena-x-20-kg/,SKIP,Nombre no encontrado,"$0,00"
+2026-04-11 13:07:59,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-grande/,SKIP,Nombre no encontrado,"$0,00"
+2026-04-11 13:07:59,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-chico/,SKIP,Nombre no encontrado,"$0,00"
+2026-04-11 13:07:59,EL LADRILLERO,20,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0001.107,SKIP,CEMENTO AVELLANEDA X 50 KG,$ 0.00
+2026-04-11 13:07:59,CAS,2,https://castienda.com.ar/producto/maestro-cemento-de-albanileria-x-25-kg-holcim-copia/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,2,https://castienda.com.ar/producto/cal-hidratada-holcim-x-25-kg/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,3,https://castienda.com.ar/producto/bolson-de-arena-comun-de-110-tn-aprox/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,3,https://castienda.com.ar/producto/bolson-de-arena-gruesa-especial-de-110-tn-aprox/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,4,https://castienda.com.ar/producto/bolson-piedra-binder-6-12-x-110-tn-aprox/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,4,https://castienda.com.ar/producto/bolson-piedra-granitica-x-700-kg-aprox/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,5,https://castienda.com.ar/producto/revoque-fino-a-la-cal-exterior-x-25-kg-holcim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,6,https://castienda.com.ar/producto/revoque-fino-a-la-cal-interior-x-25-kg-holcim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,6,https://castienda.com.ar/producto/ladrillo-portante-12-x-19-x-33/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,8,https://castienda.com.ar/producto/ladrillo-tabique-12-x-18-x-33/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,9,https://castienda.com.ar/producto/ladrillo-portante-12-x-19-x-33-palmar/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,9,https://castienda.com.ar/producto/ladrillo-dm20-doble-muro-20-x-18-x-33-ceramica-rosario/,SKIP,Nombre no encontrado,Precio no encontrado
+2026-04-11 13:07:59,CAS,10,https://castienda.com.ar/producto/ladrillo-techo-11-x-25-x-38-palmar/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,10,https://castienda.com.ar/producto/ladrillo-telgopor-100-x-38-x-12/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,11,https://castienda.com.ar/producto/tector-aditivo-hidrofugo-1230-x-20-lts-holcim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,12,https://castienda.com.ar/producto/sika-1-bidon-x-10-lts/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,12,https://castienda.com.ar/producto/sika-3-sin-cloruro-bidon-2/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,13,https://castienda.com.ar/producto/zocalo-de-eps-extra-line-blanco-mate-atrim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,13,https://castienda.com.ar/producto/zocalo-de-eps-line-blanco-mate-atrim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,14,https://castienda.com.ar/producto/zocalo-de-eps-plain-blanco-mate-atrim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,14,https://castienda.com.ar/producto/pastina-classic-x-2-kg-weber/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,15,https://castienda.com.ar/producto/pastina-prestige-x-2-kg-weber/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,15,https://castienda.com.ar/producto/pastina-performance-x-1-kg-klaukol/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,16,https://castienda.com.ar/producto/pastina-clasica-x-1-kg-klaukol/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,16,https://castienda.com.ar/producto/pegamento-impermeable-holcim-x-25-kg/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,17,https://castienda.com.ar/producto/pegamento-para-porcelanatos-holcim-x-25-kg/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,17,https://castienda.com.ar/producto/pegamento-flexible-holcim-x-25-kg/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,18,https://castienda.com.ar/producto/ceramico-glaciar-36-x-36-alberdi-2da/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,18,https://castienda.com.ar/producto/azulejo-ceramico-brick-biselado-blanco-bizantina/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,19,https://castienda.com.ar/producto/guardacanto-quadra-marfil-stone-10-mm-x-10-mm-x-25-m/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,19,https://castienda.com.ar/producto/adhesivo-rellenador-pro-fix-atrim/,EXCEPCION: ReadTimeout,,
+2026-04-11 13:07:59,CAS,20,https://castienda.com.ar/producto/monocomando-mesada-arizona-fv/,EXCEPCION: ReadTimeout,,
