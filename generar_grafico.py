@@ -29,8 +29,37 @@ df_maestros = pd.read_csv('Productos_Maestros.csv')
 df_hist['precio_num'] = df_hist['precio_detectado'].apply(clean_price)
 df_hist = df_hist.dropna(subset=['precio_num'])
 df_hist['timestamp'] = pd.to_datetime(df_hist['timestamp'])
-last_update = df_hist['timestamp'].max().strftime('%d/%m/%Y %H:%M')
 
+# --- Guard: si el CSV está vacío (primer run o reset), generar HTML de placeholder ---
+if df_hist.empty:
+    print("   -> Sin datos aún. Generando placeholder HTML...")
+    placeholder = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor de Precios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #9CA3AF; font-family: 'Inter', sans-serif;
+               display: flex; align-items: center; justify-content: center;
+               height: 100vh; margin: 0; flex-direction: column; gap: 12px; }
+        h2 { color: #F9FAFB; margin: 0; font-size: 20px; }
+        p  { margin: 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h2>Monitor de Precios</h2>
+    <p>Sin datos todavia. El grafico aparecera tras la primera corrida del scraper.</p>
+</body>
+</html>
+"""
+    with open('grafico_precios.html', 'w', encoding='utf-8') as f:
+        f.write(placeholder)
+    print("Hecho (placeholder).")
+    import sys; sys.exit(0)
+
+last_update = df_hist['timestamp'].max().strftime('%d/%m/%Y %H:%M')
 
 df_full = df_hist.merge(df_maestros, on='codigo_interno', how='left')
 df_full['Category'] = df_full['nombre_generico'].fillna(df_full['nombre_detectado'])
@@ -79,7 +108,7 @@ base_prices = alt.Chart(stats).encode(
         labelFontSize=13,
         labelAlign='left', 
         labelLimit=400,
-        labelPadding=300, 
+        labelPadding=200, 
         tickSize=0, domain=False, offset=0
     ))
 )
@@ -117,7 +146,7 @@ t_mean = value_text_p('mean', THEME['grey'], dy=-18)
 
 chart_prices = alt.layer(rail, p_min, p_max, p_mean, t_min, t_max, t_mean).properties(
     width=600, 
-    height=len(stats)*50,
+    height=max(len(stats)*50, 200),
     title=alt.TitleParams(
         text="Rango de Precios (Min/Max/Promedio)",
         color=THEME['text'],
@@ -187,7 +216,7 @@ chart_trend = alt.layer(
     trend_text_neg
 ).properties(
     width=150, 
-    height=len(stats)*50,
+    height=max(len(stats)*50, 200),
     title=alt.TitleParams(
         text="Variación 30d (%)",
         color=THEME['text'],
