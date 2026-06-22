@@ -1,15 +1,38 @@
 run_timestamp,proveedor,codigo,url,tipo_error,nombre,precio
-2026-06-21 14:19:16,RODO MATERIALES,39,https://www.rodomateriales.com.ar/producto/cbwle/block-de-cemento-13x20x40,SKIP,Importante,Precio no encontrado
-2026-06-21 14:19:16,LA YESERA ROSARINA,37,https://tienda.layeserarosarina.com.ar/productos/placas-durlock-125mm-12x240-m/,SKIP,Nombre no encontrado,$16.100
-2026-06-21 14:19:16,DURLINE,38,https://www.durline.com.ar/#!/producto/83/,SKIP,Placa Durlock Est Ref 12.5mm 1.20x2m *Durlock,"$13.310,,00"
-2026-06-21 14:19:16,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/cementos/copia-de-cemento-avellaneda-x-50-kg/,SKIP,Nombre no encontrado,"$0,00"
-2026-06-21 14:19:16,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/arena-comun-x-metro/,SKIP,Nombre no encontrado,"$0,00"
-2026-06-21 14:19:16,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-extra-avellaneda-x-25-kg/,HTTP 404,,
-2026-06-21 14:19:16,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-santa-elena-x-20-kg/,SKIP,Nombre no encontrado,"$0,00"
-2026-06-21 14:19:16,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-grande/,SKIP,Nombre no encontrado,"$0,00"
-2026-06-21 14:19:16,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-chico/,SKIP,Nombre no encontrado,"$0,00"
-2026-06-21 14:19:16,EL LADRILLERO,20,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0001.107,SKIP,CEMENTO AVELLANEDA X 50 KG,$ 0.00
-2026-06-21 14:19:16,CAS,11,https://castienda.com.ar/producto/tector-aditivo-hidrofugo-1230-x-20-lts-holcim/,HTTP 404,,
-2026-06-21 14:19:16,CAS,14,https://castienda.com.ar/producto/zocalo-de-eps-plain-blanco-mate-atrim/,HTTP 404,,
-2026-06-21 14:19:16,CAS,18,https://castienda.com.ar/producto/ceramico-glaciar-36-x-36-alberdi-2da/,HTTP 404,,
-2026-06-21 14:19:16,CAS,19,https://castienda.com.ar/producto/adhesivo-rellenador-pro-fix-atrim/,HTTP 404,,
+2026-06-22 17:03:28,RODO MATERIALES,39,https://www.rodomateriales.com.ar/producto/cbwle/block-de-cemento-13x20x40,SKIP,Importante,Precio no encontrado
+2026-06-22 17:03:28,LA YESERA ROSARINA,37,https://tienda.layeserarosarina.com.ar/productos/placas-durlock-125mm-12x240-m/,EXCEPCION: ConnectionError,,
+2026-06-22 17:03:28,DURLINE,38,https://www.durline.com.ar/#!/producto/83/,SKIP,Placa Durlock Est Ref 12.5mm 1.20x2m *Durlock,"$13.310,,00"
+2026-06-22 17:03:28,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/cementos/copia-de-cemento-avellaneda-x-50-kg/,SKIP,Nombre no encontrado,"$0,00"
+2026-06-22 17:03:28,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/arena-comun-x-metro/,SKIP,Nombre no encontrado,"$0,00"
+2026-06-22 17:03:28,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-extra-avellaneda-x-25-kg/,HTTP 404,,
+2026-06-22 17:03:28,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-santa-elena-x-20-kg/,SKIP,Nombre no encontrado,"$0,00"
+2026-06-22 17:03:28,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-grande/,SKIP,Nombre no encontrado,"$0,00"
+2026-06-22 17:03:28,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-chico/,SKIP,Nombre no encontrado,"$0,00"
+2026-06-22 17:03:28,EL LADRILLERO,20,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0001.107,SKIP,CEMENTO AVELLANEDA X 50 KG,$ 0.00
+2026-06-22 17:03:28,EL LADRILLERO,22,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0003.007,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,23,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0003.042,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,23,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0003.107,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,24,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0003.133,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,24,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0003.090,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,25,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0003.091,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,25,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.002,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,26,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.003,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,26,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.004,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,27,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.005,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,27,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.007,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,28,http://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.008,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,28,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0004.019,HTTP 502,,
+2026-06-22 17:03:28,EL LADRILLERO,29,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.693,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,29,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.694,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,30,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.695,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,30,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.696,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,31,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.697,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,31,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.651,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,32,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.652,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,32,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.653,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,33,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.661,HTTP 530,,
+2026-06-22 17:03:28,EL LADRILLERO,33,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0007.662,HTTP 530,,
+2026-06-22 17:03:28,CAS,11,https://castienda.com.ar/producto/tector-aditivo-hidrofugo-1230-x-20-lts-holcim/,HTTP 404,,
+2026-06-22 17:03:28,CAS,14,https://castienda.com.ar/producto/zocalo-de-eps-plain-blanco-mate-atrim/,HTTP 404,,
+2026-06-22 17:03:28,CAS,18,https://castienda.com.ar/producto/ceramico-glaciar-36-x-36-alberdi-2da/,HTTP 404,,
+2026-06-22 17:03:28,CAS,19,https://castienda.com.ar/producto/adhesivo-rellenador-pro-fix-atrim/,HTTP 404,,
