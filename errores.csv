@@ -1,17 +1,17 @@
 run_timestamp,proveedor,codigo,url,tipo_error,nombre,precio
-2026-09-01 16:18:15,LA YESERA ROSARINA,37,https://tienda.layeserarosarina.com.ar/productos/placas-durlock-125mm-12x240-m/,SKIP,Nombre no encontrado,$16.880
-2026-09-01 16:18:15,RODO MATERIALES,39,https://www.rodomateriales.com.ar/producto/cbwle/block-de-cemento-13x20x40,SKIP,Nombre no encontrado,Precio no encontrado
-2026-09-01 16:18:15,DURLINE,38,https://www.durline.com.ar/#!/producto/83/,SKIP,Placa Durlock Est Ref 12.5mm 1.20x2m *Durlock,"$14.300,,00"
-2026-09-01 16:18:15,EL LADRILLERO,20,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0001.107,SKIP,CEMENTO AVELLANEDA X 50 KG,$ 0.00
-2026-09-01 16:18:15,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/cementos/copia-de-cemento-avellaneda-x-50-kg/,EXCEPCION: TimeoutError,,
-2026-09-01 16:18:15,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/arena-comun-x-metro/,EXCEPCION: TimeoutError,,
-2026-09-01 16:18:15,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-extra-avellaneda-x-25-kg/,HTTP 522,,
-2026-09-01 16:18:15,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-santa-elena-x-20-kg/,HTTP 522,,
-2026-09-01 16:18:15,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-grande/,EXCEPCION: TimeoutError,,
-2026-09-01 16:18:15,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-chico/,HTTP 522,,
-2026-09-01 16:18:15,CAS,11,https://castienda.com.ar/producto/tector-aditivo-hidrofugo-1230-x-20-lts-holcim/,HTTP 404,,
-2026-09-01 16:18:15,CAS,12,https://castienda.com.ar/producto/sika-1-bidon-x-10-lts/,HTTP 404,,
-2026-09-01 16:18:15,CAS,13,https://castienda.com.ar/producto/zocalo-de-eps-extra-line-blanco-mate-atrim/,HTTP 404,,
-2026-09-01 16:18:15,CAS,13,https://castienda.com.ar/producto/zocalo-de-eps-line-blanco-mate-atrim/,HTTP 404,,
-2026-09-01 16:18:15,CAS,18,https://castienda.com.ar/producto/ceramico-glaciar-36-x-36-alberdi-2da/,HTTP 404,,
-2026-09-01 16:18:15,CAS,19,https://castienda.com.ar/producto/adhesivo-rellenador-pro-fix-atrim/,HTTP 404,,
+2026-09-02 16:14:53,LA YESERA ROSARINA,37,https://tienda.layeserarosarina.com.ar/productos/placas-durlock-125mm-12x240-m/,SKIP,Nombre no encontrado,$16.880
+2026-09-02 16:14:53,RODO MATERIALES,39,https://www.rodomateriales.com.ar/producto/cbwle/block-de-cemento-13x20x40,SKIP,Importante,Precio no encontrado
+2026-09-02 16:14:53,DURLINE,38,https://www.durline.com.ar/#!/producto/83/,SKIP,Placa Durlock Est Ref 12.5mm 1.20x2m *Durlock,"$14.300,,00"
+2026-09-02 16:14:53,EL LADRILLERO,20,https://elladrillero.com.ar/cobcgi?proid=cgsoftware&prog=loginw1&func=Detalle&codigo=0001.107,SKIP,CEMENTO AVELLANEDA X 50 KG,$ 0.00
+2026-09-02 16:14:53,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/cementos/copia-de-cemento-avellaneda-x-50-kg/,EXCEPCION: TimeoutError,,
+2026-09-02 16:14:53,LA ECONOMICA,34,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/arena-comun-x-metro/,EXCEPCION: TimeoutError,,
+2026-09-02 16:14:53,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-extra-avellaneda-x-25-kg/,EXCEPCION: TimeoutError,,
+2026-09-02 16:14:53,LA ECONOMICA,35,https://laeconomica.com.ar/tienda/materiales-de-construccion/cales-molidas/cal-hidratada-santa-elena-x-20-kg/,EXCEPCION: TimeoutError,,
+2026-09-02 16:14:53,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-grande/,EXCEPCION: TimeoutError,,
+2026-09-02 16:14:53,LA ECONOMICA,36,https://laeconomica.com.ar/tienda/materiales-de-construccion/arenas/bolson-de-arena-chico/,EXCEPCION: TimeoutError,,
+2026-09-02 16:14:53,CAS,11,https://castienda.com.ar/producto/tector-aditivo-hidrofugo-1230-x-20-lts-holcim/,HTTP 404,,
+2026-09-02 16:14:53,CAS,12,https://castienda.com.ar/producto/sika-1-bidon-x-10-lts/,HTTP 404,,
+2026-09-02 16:14:53,CAS,13,https://castienda.com.ar/producto/zocalo-de-eps-extra-line-blanco-mate-atrim/,HTTP 404,,
+2026-09-02 16:14:53,CAS,13,https://castienda.com.ar/producto/zocalo-de-eps-line-blanco-mate-atrim/,HTTP 404,,
+2026-09-02 16:14:53,CAS,18,https://castienda.com.ar/producto/ceramico-glaciar-36-x-36-alberdi-2da/,HTTP 404,,
+2026-09-02 16:14:53,CAS,19,https://castienda.com.ar/producto/adhesivo-rellenador-pro-fix-atrim/,HTTP 404,,
